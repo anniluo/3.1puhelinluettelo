@@ -60,6 +60,19 @@ app.delete('/api/persons/:id', (request, response) => {
 // 3.5: puhelinluettelo backend step5
 app.post('/api/persons', (request, response) => {
     const body = request.body
+
+    if (!body.name || !body.number) {
+        return response.status(400).json({
+            error: 'name and/or number missing!'
+        })
+    }
+
+    if (contacts.find(contact => contact.name === body.name)) {
+        return response.status(400).json({
+            error: 'name already added to the Phonebook'
+        })
+    }
+
     const randomId = Math.floor(Math.random() * Math.floor(999))
 
     const contact = {
