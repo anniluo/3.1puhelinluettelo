@@ -57,6 +57,7 @@ app.delete('/api/persons/:id', (request, response) => {
     response.status(204).end()
 })
 
+// 3.5: puhelinluettelo backend step5
 app.post('/api/persons', (request, response) => {
     const body = request.body
     const randomId = Math.floor(Math.random() * Math.floor(999))
