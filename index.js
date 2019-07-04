@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 
 app.use(bodyParser.json())
 
-const contacts = [
+let contacts = [
     {
         "name": "Ada Lovelace",
         "number": "12-21-321243",
@@ -39,7 +39,6 @@ app.get('/api/persons', (request, response) => {
     response.send(contacts)
 })
 
-// 3.3: puhelinluettelo backend step3
 app.get('/api/persons/:id', (request, response) => {
     const id = Number(request.params.id)
     const contact = contacts.find(contact => contact.id === id)
@@ -49,6 +48,27 @@ app.get('/api/persons/:id', (request, response) => {
     } else {
         response.status(404).end()
     }
+})
+
+app.delete('/api/persons/:id', (request, response) => {
+    const id = Number(request.params.id)
+    contacts = contacts.filter(contact => contact.id !== id)
+
+    response.status(204).end()
+})
+
+app.post('/api/persons', (request, response) => {
+    const body = request.body
+    const randomId = Math.floor(Math.random() * Math.floor(999))
+
+    const contact = {
+        name: body.name,
+        number: body.number,
+        id: randomId
+    }
+
+    contacts = contacts.concat(contact)
+    response.json(contact)
 })
 
 const PORT = 3001
