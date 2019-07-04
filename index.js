@@ -39,6 +39,7 @@ app.get('/api/persons', (request, response) => {
     response.send(contacts)
 })
 
+// 3.3: puhelinluettelo backend step3
 app.get('/api/persons/:id', (request, response) => {
     const id = Number(request.params.id)
     const contact = contacts.find(contact => contact.id === id)
