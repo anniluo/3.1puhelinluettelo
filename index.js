@@ -27,8 +27,12 @@ const contacts = [
     },
 ]
 
-app.get('/api', (request, response) => {
-    response.send('<h3>"REST" api for contacts</h3>')
+app.get('/info', (request, response) => {
+    const time = new Date()
+    response.send(`
+        <p>Phonebook has info for ${contacts.length} people<p>
+        <p>${time}<p>
+    `)
 })
 
 app.get('/api/persons', (request, response) => {
