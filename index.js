@@ -2,14 +2,14 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const bodyParser = require('body-parser')
-const morgan = require('morgan')
+//const morgan = require('morgan')
 
 app.use(cors())
 app.use(express.static('build'))
 app.use(bodyParser.json())
 
 morgan.token('data', (req, res) => JSON.stringify(req.body))
-app.use(morgan((tokens, req, res) => {
+/* app.use(morgan((tokens, req, res) => {
     return [
         tokens.method(req,res),
         tokens.url(req,res),
@@ -18,7 +18,7 @@ app.use(morgan((tokens, req, res) => {
         tokens['response-time'](req,res), 'ms',
         tokens['data'](req, res)
     ].join(' ')
-}))
+})) */
 
 let contacts = [
     {
