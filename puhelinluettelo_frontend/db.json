@@ -1,0 +1,19 @@
+{
+  "contacts": [
+    {
+      "name": "Mike Eagle",
+      "number": "21-212-2121212",
+      "id": 1
+    },
+    {
+      "name": "Ada Lovelace",
+      "number": "39-44-5323523",
+      "id": 2
+    },
+    {
+      "name": "Dan Abramov",
+      "number": "12-43-23123",
+      "id": 3
+    }
+  ]
+}

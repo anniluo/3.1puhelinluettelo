@@ -1,9 +1,13 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 
+app.use(cors())
+app.use(express.static('build'))
 app.use(bodyParser.json())
+
 morgan.token('data', (req, res) => JSON.stringify(req.body))
 app.use(morgan((tokens, req, res) => {
     return [
@@ -69,7 +73,6 @@ app.delete('/api/persons/:id', (request, response) => {
     response.status(204).end()
 })
 
-// 3.5: puhelinluettelo backend step5
 app.post('/api/persons', (request, response) => {
     const body = request.body
 
@@ -97,7 +100,7 @@ app.post('/api/persons', (request, response) => {
     response.json(contact)
 })
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
     console.log(`server running on port: ${PORT}`)
 })
