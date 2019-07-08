@@ -15,7 +15,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    //"morgan": "^1.9.1",
     "nodemon": "^1.19.1"
   },
   "dependencies": {
