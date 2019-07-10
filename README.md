@@ -12,7 +12,7 @@ FullstackOpen2019 MOOC-course, part3 tasks
 [Landing page](https://fullstack-phonebook-anniluo.herokuapp.com/)
 
 - When running frontend code in dev mode, it gives "Could not proxy request (ECONNRESET)" error and opens the browser in port 3000. 
-- Appilcation works in the 3001 port too, but doesn't automatically open the browser to it.
+- Application works in the 3001 port too, but doesn't automatically open the browser to it.
 
 
 
