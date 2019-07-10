@@ -14,8 +14,7 @@ mongoose.connect(url, {useNewUrlParser: true})
 
 const personSchema = new mongoose.Schema({
     name: String,
-    number: String,
-    id: Number
+    number: String
 })
 
 const Person = mongoose.model('Person', personSchema)
@@ -31,7 +30,6 @@ if (process.argv.length > 3) {
         mongoose.connection.close()
     })
 
-    process.exit(1)
 } else {
     Person.find({}).then(result => {
         console.log('Phonebook:')
@@ -40,5 +38,4 @@ if (process.argv.length > 3) {
         })
         mongoose.connection.close()
     })
-    process.exit(1)
 }
