@@ -1,7 +1,9 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const Person = require('./models/person')
 //const morgan = require('morgan')
 
 app.use(cors())
@@ -51,19 +53,17 @@ app.get('/info', (request, response) => {
     `)
 })
 
+// 3:13 puhelinluettelo ja tietokanta step1 (fetch all people saved in the phonebook)
 app.get('/api/persons', (request, response) => {
-    response.send(contacts)
+    Person.find({}).then(people => {
+        response.send(people.map(person => person.toJSON()))
+    })
 })
 
 app.get('/api/persons/:id', (request, response) => {
-    const id = Number(request.params.id)
-    const contact = contacts.find(contact => contact.id === id)
-
-    if (contact) {
-        response.send(contact)
-    } else {
-        response.status(404).end()
-    }
+    Person.findById(request.params.id).then(person => {
+        response.json(person.toJSON())
+    })
 })
 
 app.delete('/api/persons/:id', (request, response) => {
@@ -82,25 +82,23 @@ app.post('/api/persons', (request, response) => {
         })
     }
 
-    if (contacts.find(contact => contact.name === body.name)) {
+  /*   if (Person.find({name: body.name})) {
         return response.status(400).json({
             error: 'name already added to the Phonebook'
         })
-    }
+    } */
 
-    const randomId = Math.floor(Math.random() * Math.floor(999))
-
-    const contact = {
+    const person = new Person({
         name: body.name,
-        number: body.number,
-        id: randomId
-    }
+        number: body.number
+    }) 
 
-    contacts = contacts.concat(contact)
-    response.json(contact)
+    person.save().then(savedPerson => {
+        response.json(savedPerson.toJSON())
+    })
 })
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT
 app.listen(PORT, () => {
     console.log(`server running on port: ${PORT}`)
 })
