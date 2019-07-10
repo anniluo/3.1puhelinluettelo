@@ -53,7 +53,6 @@ app.get('/info', (request, response) => {
     `)
 })
 
-// 3:13 puhelinluettelo ja tietokanta step1 (fetch all people saved in the phonebook)
 app.get('/api/persons', (request, response) => {
     Person.find({}).then(people => {
         response.send(people.map(person => person.toJSON()))
@@ -73,6 +72,7 @@ app.delete('/api/persons/:id', (request, response) => {
     response.status(204).end()
 })
 
+// 3:14 puhelinluettelo ja tietokanta, step2 (save a person to the database)
 app.post('/api/persons', (request, response) => {
     const body = request.body
 
