@@ -22,35 +22,16 @@ app.use(morgan((tokens, req, res) => {
     ].join(' ')
 })) */
 
-let contacts = [
-    {
-        "name": "Ada Lovelace",
-        "number": "12-21-321243",
-        "id": 1
-    },
-    {
-        "name": "Anna Winlock",
-        "number": "11-22-112211",
-        "id": 2
-    },
-    {
-        "name": "Marlyn Meltzer",
-        "number": "33-23-456344",
-        "id": 3
-    },
-    {
-        "name": "Betty Holberton",
-        "number": "55-15-561123",
-        "id": 4
-    },
-]
-
 app.get('/info', (request, response) => {
     const time = new Date()
-    response.send(`
-        <p>Phonebook has info for ${contacts.length} people<p>
-        <p>${time}<p>
-    `)
+    Person.find({})
+        .then(people => {
+            response.send(`
+                <p>Phonebook has info for ${people.length} people<p>
+                <p>${time}<p>
+            `)
+        })
+        .catch(error => next(error))
 })
 
 app.get('/api/persons', (request, response, next) => {
