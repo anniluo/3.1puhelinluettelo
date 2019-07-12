@@ -22,7 +22,7 @@ app.use(morgan((tokens, req, res) => {
     ].join(' ')
 })) */
 
-app.get('/info', (request, response) => {
+app.get('/info', (request, response, next) => {
     const time = new Date()
     Person.find({})
         .then(people => {
