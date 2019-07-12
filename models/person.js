@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 const databaseUrl = process.env.MONGODB_URI
 
+mongoose.set('useFindAndModify', false)
+
 mongoose.connect(databaseUrl, {useNewUrlParser: true})
     .then(result => {
         console.log('Connected to MongoDB')
