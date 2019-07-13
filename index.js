@@ -22,7 +22,7 @@ app.use(morgan((tokens, req, res) => {
     ].join(' ')
 })) */
 
-app.get('/info', (request, response, next) => {
+app.get('/info', (request, response, nextcd) => {
     const time = new Date()
     Person.find({})
         .then(people => {
@@ -105,6 +105,9 @@ const errorHandler = (error, request, response, next) => {
     if (error.name === 'CastError' && error.kind == 'ObjectId') {
         return response.status(400).send({error: 'Malformatted id!'})
     } 
+    if (error.name === 'ValidationError') {
+        return response.status(400).send({error: 'Name must be unique!'})
+    }
 
     next(error)
 }
