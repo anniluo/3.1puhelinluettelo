@@ -19,7 +19,7 @@ module.exports = {
 		],
 		'linebreak-style': [
 			'error',
-			'unix'
+			'windows'
 		],
 		'quotes': [
 			'error',
@@ -30,7 +30,7 @@ module.exports = {
 			'never'
 		],
 		'eqeqeq': 'error',
-		'no-trailing.spaces': 'error',
+		'no-trailing-spaces': 'error',
 		'object-curly-spacing': [
 			'error',
 			'always'
