@@ -10,11 +10,13 @@
     "build:frontend": "rm -rf build && cd ../../../fullStackOpen/osa2/puhelinluettelo && npm run build --prod && cp -r build ../../../nodeProjects/fullstackOpen-osa3/puhelinluettelo_backend",
     "deploy": "git push heroku master",
     "deploy:full": "npm run build:frontend && git add . && git commit -m 'frontend build' && git push && npm run deploy",
-    "logs:prod": "heroku logs -- tail"
+    "logs:prod": "heroku logs -- tail",
+    "lint": "eslint ."
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^6.0.1",
     "nodemon": "^1.19.1"
   },
   "dependencies": {
